@@ -5,3 +5,4 @@ define('USER','root');
 define('PASS','');
 
 //DB info 
+?>
