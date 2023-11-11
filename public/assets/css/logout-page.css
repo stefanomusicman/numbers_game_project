@@ -90,16 +90,6 @@ body {
     height: 50%;
 }
 
-button {
-    font-family: 'Montserrat', sans-serif;
-    /* width: 40%; */
-    height: 4em;
-    border: none;
-    border-radius: 5px;
-    background-color: aquamarine;
-    font-size: 15px;
-}
-
 a:hover {
     cursor: pointer;
 }
