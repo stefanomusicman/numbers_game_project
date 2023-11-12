@@ -20,6 +20,9 @@
                 <div class="text-container">
                     <p>Congratulations! You've completed all 6 levels!</p>
                 </div>
+                <div class="button-container">
+                    <a id="play_again_button" href="../form/game-form.php">Play Again</a>
+                </div>
             </div>
         </div>
     </div>

@@ -20,6 +20,9 @@
                 <div class="text-container">
                     <p>Sorry you were not able to complete all the levels in 6 attempts. Keep trying, you'll get it!</p>
                 </div>
+                <div class="button-container">
+                    <a id="play_again_button" href="../form/game-form.php">Play Again</a>
+                </div>
             </div>
         </div>
     </div>
