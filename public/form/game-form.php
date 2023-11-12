@@ -11,6 +11,8 @@ $random_numbers_q4 = generateRandomNumbers();
 $random_letters_q5 = generateRandomLetters();
 $random_numbers_q6 = generateRandomNumbers();
 
+$number_of_mistakes = 0;
+
 // Questions for each level
 $questions = array(
     "Order 6 letters in ascending order: $random_letters_q1",
@@ -31,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
+            // Increment the mistake counter
+            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
             // Display an error message for incorrect answers
             $errorMessage = "Incorrect answer. Please try again.";
         }
@@ -41,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
+            // Increment the mistake counter
+            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
             // Display an error message for incorrect answers
             $errorMessage = "Incorrect answer. Please try again.";
         }
@@ -51,6 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
+            // Increment the mistake counter
+            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
             // Display an error message for incorrect answers
             $errorMessage = "Incorrect answer. Please try again.";
         }
@@ -61,6 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
+            // Increment the mistake counter
+            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
             // Display an error message for incorrect answers
             $errorMessage = "Incorrect answer. Please try again.";
         }
@@ -71,6 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
+            // Increment the mistake counter
+            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
             // Display an error message for incorrect answers
             $errorMessage = "Incorrect answer. Please try again.";
         }
@@ -81,9 +93,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
+            // Increment the mistake counter
+            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
             // Display an error message for incorrect answers
             $errorMessage = "Incorrect answer. Please try again.";
         }
+    }
+
+    // Check if the mistake count is 6
+    // this will automatically end the game and redirect the user to the game over page
+    // in this if statement, you will have add the logic that will be responsible for storing the result in the DB
+    if (isset($_SESSION["mistake_count"]) && $_SESSION["mistake_count"] == 6) {
+        session_unset();
+        session_destroy();
+        header("Location: ../message/game-over.php");
+        exit();
     }
 }
 
@@ -106,6 +130,9 @@ if ($level <= count($questions)) {
 
                 <div class="container_2">
                     <div class="promo-container">
+                        <h2>Number of Mistakes: <?php echo isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] : 0; ?></h2>
+                    </div>
+                    <div class="promo-container">
                         <h2>Level <?php echo $level; ?></h2>
                     </div>
                     <form method="post" action="">
@@ -124,8 +151,8 @@ if ($level <= count($questions)) {
     </html>
     <?php
 } else {
-    // Display a completion message when the user completes all levels
-    //echo "Congratulations! You have completed all levels.";
+    // If a user is able to successfully complete the game in under 6 attempts, 
+    // the session will be terminated and they will be re-directed to a game-won screen
     session_unset();
     session_destroy();
     header("Location: ../message/game-won.php");

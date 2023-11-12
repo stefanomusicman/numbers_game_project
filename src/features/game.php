@@ -44,7 +44,7 @@ function generateRandomLetters() {
 }
 
 function checkAnswerOne($input, $randomizedString) {
-    return true;
+    return false;
 }
 
 function checkAnswerTwo($input, $randomizedString) {
