@@ -142,6 +142,7 @@ if ($level <= count($questions)) {
                         <input type="hidden" name="level" value="<?php echo $level; ?>">
                         <div class="button-container">
                             <button type="submit">Submit Answer</button>
+                            <a id="cancel-button" href="../../src/features/cancel.php">Cancel</a>
                         </div>
                     </form>
                 </div>
