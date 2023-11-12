@@ -2,14 +2,23 @@
 session_start();
 require '../../src/features/game.php';
 
+// These are all the randomly generated strings 
+// that will be used in the questions
+$random_letters_q1 = generateRandomLetters();
+$random_letters_q2 = generateRandomLetters();
+$random_numbers_q3 = generateRandomNumbers();
+$random_numbers_q4 = generateRandomNumbers();
+$random_letters_q5 = generateRandomLetters();
+$random_numbers_q6 = generateRandomNumbers();
+
 // Questions for each level
 $questions = array(
-    "Order 6 letters in ascending order.",
-    "Order 6 letters in descending order.",
-    "Order 6 numbers in ascending order.",
-    "Order 6 numbers in descending order.",
-    "Identify the first (smallest) and last letter (largest) in a set of 6 letters.",
-    "Identify the smallest and the largest number in a set of 6 numbers.",
+    "Order 6 letters in ascending order: $random_letters_q1",
+    "Order 6 letters in descending order: $random_letters_q2",
+    "Order 6 numbers in ascending order: $random_numbers_q3",
+    "Order 6 numbers in descending order: $random_numbers_q4",
+    "Identify the first (smallest) and last letter (largest) in a set of 6 letters: $random_letters_q5",
+    "Identify the smallest and the largest number in a set of 6 numbers: $random_numbers_q6",
 );
 
 // Check if the user submitted a response
@@ -18,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userAnswer = strtolower(trim($_POST["answer"]));
 
     if($level == 1){
-        if(checkAnswerOne($userAnswer)){
+        if(checkAnswerOne($userAnswer, $random_letters_q1)){
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
@@ -28,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($level == 2){
-        if(checkAnswerTwo($userAnswer)){
+        if(checkAnswerTwo($userAnswer, $random_letters_q2)){
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
@@ -38,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($level == 3){
-        if(checkAnswerThree($userAnswer)){
+        if(checkAnswerThree($userAnswer, $random_numbers_q3)){
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
@@ -48,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($level == 4){
-        if(checkAnswerFour($userAnswer)){
+        if(checkAnswerFour($userAnswer, $random_numbers_q4)){
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
@@ -58,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($level == 5){
-        if(checkAnswerFive($userAnswer)){
+        if(checkAnswerFive($userAnswer, $random_letters_q5)){
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
@@ -68,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($level == 6){
-        if(checkAnswerSix($userAnswer)){
+        if(checkAnswerSix($userAnswer, $random_numbers_q6)){
             // Move to the next level or display a success message
             $_SESSION["level"] = $level + 1;
         } else {
