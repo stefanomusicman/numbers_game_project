@@ -13,11 +13,12 @@
             <div class="promo-container">
                 <h2>LaSalle Quiz Game</h2>
             </div>
-            <form>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+            <form method="post" action="../../src/features/signin.php">
+                <input type="text" placeholder="Username" name = "user"/>
+                <input type="password" placeholder="Password" name = "password" />
                 <div class="button-container">
-                    <button>Login</button>
+                    <input id="submitbutton1" type="submit" name="send" value="SEND IT" />
+                    <!-- <button >Login</button> I changed button for input to make it work, but the css is not working now-->
                 </div>
                 <p>Don't have an account? <a href="signup-form.php">Create One!</a></p>
             </form>
@@ -26,3 +27,4 @@
 </body>
 
 </html>
+ 

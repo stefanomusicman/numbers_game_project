@@ -1,21 +1,18 @@
 <?php
-/**
- *
- *EXERCISE 16 VERSION 2
- *Patrick Saint-Louis, 2023
-*/
+
+require_once "../../public/model/user.php";
 class Select extends Database {
 
-    private $dbName;
     private $tableName;
     private $user;
+    private $password;
 
     //Constructor method 
-    public function __construct($db, $table, $user){
-        $this->dbName = $db;
+    public function __construct($table, $user, $password ){
+
         $this->tableName = $table;
         $this->user = $user;
-        //$this->selectAndDisplayFromTable();
+        $this->password = $password;
     }
 
 
@@ -28,62 +25,26 @@ class Select extends Database {
         return $sql;
     }
 
-  
-
-    //display method
-    private function displayTwoDimAssocArray($array){
-        echo "<table>";
-        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
-        foreach($array as $section => $items){
-            echo "<tr>";
-            foreach($items as $key => $value){
-                echo "<td>$value</td>";
-            }
-            echo "</tr>";
-        }
-        echo "</table>";
-    }
-
-    //main method
-    private function selectAndDisplayFromTable(){
-        //Assign sql query
-        $sql = $this->sql();
-        //1-CONNECT TO MYSQL
-        $this->connectToMySQL(HOST, USER, PASS);
-        //2-SELECT THE DATABASE
-        $this->selectDatabase($this->dbName);
-        //3-EXECUTE THE QUERY TO DESCRIBE THE TABLE
-        $this->executeQuery($sql['descTable']);
-        //4-EXECUTE THE QUERY TO SELECT FROM THE TABLE
-        echo $sql['selectAllColumns'];
-        $dataFound = $this->executeQuery($sql['selectAllColumns']);
-        //5-DISPLAY THE DATA SELECTED
-        $this->displayTwoDimAssocArray($dataFound);
-    }
-
-    public function getUser($user){
-        require_once "../../public/model/userLogged.php";
+    public function checkUser(){
 
         //Assign sql query
         $sql = $this->sql();
         //1-CONNECT TO MYSQL
         $this->connectToMySQL(HOST, USER, PASS);
         //2-SELECT THE DATABASE
-        $this->selectDatabase($this->dbName);
+        $this->selectDatabase(DBASE);
         //4-EXECUTE THE QUERY TO SELECT FROM THE TABLE
+       
         $dataFound = $this->executeQuery($sql['selectUser']);
-        //5-DISPLAY THE DATA SELECTED
-        
         if (!empty($dataFound)) {
-            //$string = var_export($dataFound, true);
-
+        
             if(count($dataFound) === 1){
-                $userLogged = new UserLogged($dataFound['row1']['userName']);
-                echo $userLogged->getUserName();
+                $userLogged = new User($dataFound['row1']['userName']);
+                
+                return $userLogged;
             } 
-            
         } else {
-            echo "User with username '$username' not found.";
+            return $userNotFound = new User("");
         }
             
     }

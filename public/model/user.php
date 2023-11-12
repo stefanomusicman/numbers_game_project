@@ -1,6 +1,6 @@
 <?php
 
-class UserLogged {
+class User {
     private $fName;
     private $lName; 
     private $userName;

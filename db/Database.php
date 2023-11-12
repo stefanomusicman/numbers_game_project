@@ -28,6 +28,7 @@ class Database {
     }
 
     protected function executeQuery($sqlCode){
+        $data = array();
         //Attempt do execute a query
         $execute = $this->connection->query($sqlCode);
         //If execution of the query failed, display an error message

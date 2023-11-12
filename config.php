@@ -5,4 +5,6 @@ define('USER','root');
 define('PASS','');
 
 //DB info 
+define('DBASE', 'kidsGames')
+
 ?>

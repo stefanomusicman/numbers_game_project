@@ -3,23 +3,17 @@
  *
  *
 */
-require_once "../../public/model/userLogged.php";
+require_once "../../public/model/user.php";
 
 if (isset($_POST['send'])) {
     //Assign data collected from the form signin-form.php
     $user= $_POST['user'];  
     $password= $_POST['password'];
 
-    
-    //Declare variables and constants
-    $userLogged = new UserLogged($user);
+    $userLogged = new User($user);
 
-    //Login info 
-        
-    //const DB = 'kidsGames'; //database's name
 
     //DB info
-    $dbName = "kidsGames"; 
     $tableName = "player";
 
     //Load the content of the user-defined functions used to interact with MySQL
@@ -29,19 +23,19 @@ if (isset($_POST['send'])) {
     include_once "../../db/Select.php";
   
 
-    //Instanciate an object of the user-defined class used to create the database and table  
-    //Create the database and table
-    $obj = new Create ($dbName, $tableName);
-    $obj = new Select ($dbName, $tableName, $user);
-    $obj ->getUser($user);
-     
-    //$obj = new Select ($dbName, $tableName);
+    //Instanciate an object of the Create class used to create the database and table  
+    //Create the database and tables
+    $obj = new Create ();
+
+    //Instanciate an object of Select Class to look for the user inside the database
+    $obj = new Select ($tableName, $user, $password);
+    $userLogged = $obj ->checkUser();
+    echo "the user logged is ". $userLogged->getUserName();
+
 
 
 }
-            
-
-            
+                    
             
 ?>
 <!DOCTYPE html>
