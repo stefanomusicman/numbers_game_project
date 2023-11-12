@@ -125,8 +125,10 @@ if ($level <= count($questions)) {
     <?php
 } else {
     // Display a completion message when the user completes all levels
-    echo "Congratulations! You have completed all levels.";
+    //echo "Congratulations! You have completed all levels.";
     session_unset();
     session_destroy();
+    header("Location: ../message/game-won.php");
+    exit();
 }
 ?>
