@@ -17,7 +17,8 @@
                 <input type="text" placeholder="Username" />
                 <input type="password" placeholder="Password" />
                 <div class="button-container">
-                    <button>Login</button>
+                    <!----- For now it will just go to the game, logic must be implemented ----->
+                    <a id="login_button" href="./game-form.php">Login</a>
                 </div>
                 <p>Don't have an account? <a href="signup-form.php">Create One!</a></p>
             </form>

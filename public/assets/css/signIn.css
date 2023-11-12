@@ -86,7 +86,10 @@ input {
     width: 85%;
 }
 
-button {
+#login_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Montserrat', sans-serif;
     width: 40%;
     height: 4em;
@@ -94,8 +97,15 @@ button {
     border-radius: 5px;
     background-color: aquamarine;
     font-size: 15px;
+    text-decoration: none;
+    color: black;
 }
 
 button:hover {
     cursor: pointer;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
 }
