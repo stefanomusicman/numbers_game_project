@@ -13,12 +13,11 @@
             <div class="promo-container">
                 <h2>LaSalle Quiz Game</h2>
             </div>
-            <form>
+            <form method="post" action="../../src/features/signin.php">
                 <input type="text" placeholder="Username" />
                 <input type="password" placeholder="Password" />
                 <div class="button-container">
-                    <!----- For now it will just go to the game, logic must be implemented ----->
-                    <a id="login_button" href="./game-form.php">Login</a>
+                    <input id="login_button" type="submit" name="send" value="Login" />
                 </div>
                 <p>Don't have an account? <a href="signup-form.php">Create One!</a></p>
             </form>
