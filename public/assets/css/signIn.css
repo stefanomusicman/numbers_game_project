@@ -101,7 +101,7 @@ input {
     color: black;
 }
 
-button:hover {
+#login_button:hover {
     cursor: pointer;
 }
 

@@ -101,7 +101,7 @@ input {
     color: black;
 }
 
-button:hover {
+#create_account_button:hover {
     cursor: pointer;
 }
 
