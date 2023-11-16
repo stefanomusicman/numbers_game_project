@@ -2,104 +2,115 @@
 session_start();
 require '../../src/features/game.php';
 
-// These are all the randomly generated strings 
-// that will be used in the questions
-$random_letters_q1 = generateRandomLetters();
-$random_letters_q2 = generateRandomLetters();
-$random_numbers_q3 = generateRandomNumbers();
-$random_numbers_q4 = generateRandomNumbers();
-$random_letters_q5 = generateRandomLetters();
-$random_numbers_q6 = generateRandomNumbers();
+if (!isset($_SESSION["random_strings_generated"])) {
+
+    // These are all the randomly generated strings     
+    // that will be used in the questions    
+    $random_letters_q1 = generateRandomLetters();
+    $random_letters_q2 = generateRandomLetters();
+    $random_numbers_q3 = generateRandomNumbers();
+    $random_numbers_q4 = generateRandomNumbers();
+    $random_letters_q5 = generateRandomLetters();
+    $random_numbers_q6 = generateRandomNumbers();
+
+    // Set the random strings in the session    
+    $_SESSION["random_strings_generated"] = true;
+    $_SESSION["random_letters_q1"] = $random_letters_q1;
+    $_SESSION["random_letters_q2"] = $random_letters_q2;
+    $_SESSION["random_numbers_q3"] = $random_numbers_q3;
+    $_SESSION["random_numbers_q4"] = $random_numbers_q4;
+    $_SESSION["random_letters_q5"] = $random_letters_q5;
+    $_SESSION["random_numbers_q6"] = $random_numbers_q6;
+}
 
 $number_of_mistakes = 0;
 
 // Questions for each level
 $questions = array(
-    "Order 6 letters in ascending order: $random_letters_q1",
-    "Order 6 letters in descending order: $random_letters_q2",
-    "Order 6 numbers in ascending order: $random_numbers_q3",
-    "Order 6 numbers in descending order: $random_numbers_q4",
-    "Identify the first (smallest) and last letter (largest) in a set of 6 letters: $random_letters_q5",
-    "Identify the smallest and the largest number in a set of 6 numbers: $random_numbers_q6",
+
+    "Order 6 letters in ascending order: {$_SESSION['random_letters_q1']}",
+    "Order 6 letters in descending order: {$_SESSION['random_letters_q2']}",
+    "Order 6 numbers in ascending order: {$_SESSION['random_numbers_q3']}",
+    "Order 6 numbers in descending order: {$_SESSION['random_numbers_q4']}",
+    "Identify the first (smallest) and last letter (largest) in a set of 6 letters: {$_SESSION['random_letters_q5']}",
+    "Identify the smallest and the largest number in a set of 6 numbers: {$_SESSION['random_numbers_q6']}",
 );
+
+
 
 // Check if the user submitted a response
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $level = $_POST["level"];
-    $userAnswer = strtolower(trim($_POST["answer"]));
+    $userAnswer = $_POST["answer"];
 
-    if($level == 1){
-        if(checkAnswerOne($userAnswer, $random_letters_q1)){
-            // Move to the next level or display a success message
-            $_SESSION["level"] = $level + 1;
-        } else {
-            // Increment the mistake counter
-            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
-            // Display an error message for incorrect answers
-            $errorMessage = "Incorrect answer. Please try again.";
-        }
+    switch ($level) {
+        case 1:
+            if(checkAnswer($userAnswer,$_SESSION["random_letters_q1"])){
+                // Move to the next level or display a success message
+                $_SESSION["level"] = $level + 1;
+            } else {
+                // Increment the mistake counter
+                $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
+                // Display an error message for incorrect answers
+                $errorMessage = "Incorrect answer. Please try again.";
+            }
+            break;
+        case 2:
+            if(checkAnswer($userAnswer,$_SESSION["random_letters_q2"])){
+                // Move to the next level or display a success message
+                $_SESSION["level"] = $level + 1;
+            } else {
+                // Increment the mistake counter
+                $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
+                // Display an error message for incorrect answers
+                $errorMessage = "Incorrect answer. Please try again.";
+            }
+            break;
+        case 3:
+            if(checkAnswer($userAnswer, $_SESSION["random_numbers_q3"])){
+                // Move to the next level or display a success message
+                $_SESSION["level"] = $level + 1;
+            } else {
+                // Increment the mistake counter
+                $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
+                // Display an error message for incorrect answers
+                $errorMessage = "Incorrect answer. Please try again.";
+            }
+            break;
+        case 4:
+            if(checkAnswer($userAnswer, $_SESSION["random_numbers_q4"])){
+                // Move to the next level or display a success message
+                $_SESSION["level"] = $level + 1;
+            } else {
+                // Increment the mistake counter
+                $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
+                // Display an error message for incorrect answers
+                $errorMessage = "Incorrect answer. Please try again.";
+            }
+            break;
+        case 5:
+            if(checkAnswer($userAnswer, $_SESSION["random_letters_q5"])){
+                // Move to the next level or display a success message
+                $_SESSION["level"] = $level + 1;
+            } else {
+                // Increment the mistake counter
+                $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
+                // Display an error message for incorrect answers
+                $errorMessage = "Incorrect answer. Please try again.";
+            }
+            break;
+        case 6:
+            if(checkAnswer($userAnswer, $_SESSION["random_numbers_q6"])){
+                // Move to the next level or display a success message
+                $_SESSION["level"] = $level + 1;
+            } else {
+                // Increment the mistake counter
+                $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
+                // Display an error message for incorrect answers
+                $errorMessage = "Incorrect answer. Please try again.";
+            }
+            break;
     }
-
-    if($level == 2){
-        if(checkAnswerTwo($userAnswer, $random_letters_q2)){
-            // Move to the next level or display a success message
-            $_SESSION["level"] = $level + 1;
-        } else {
-            // Increment the mistake counter
-            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
-            // Display an error message for incorrect answers
-            $errorMessage = "Incorrect answer. Please try again.";
-        }
-    }
-
-    if($level == 3){
-        if(checkAnswerThree($userAnswer, $random_numbers_q3)){
-            // Move to the next level or display a success message
-            $_SESSION["level"] = $level + 1;
-        } else {
-            // Increment the mistake counter
-            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
-            // Display an error message for incorrect answers
-            $errorMessage = "Incorrect answer. Please try again.";
-        }
-    }
-
-    if($level == 4){
-        if(checkAnswerFour($userAnswer, $random_numbers_q4)){
-            // Move to the next level or display a success message
-            $_SESSION["level"] = $level + 1;
-        } else {
-            // Increment the mistake counter
-            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
-            // Display an error message for incorrect answers
-            $errorMessage = "Incorrect answer. Please try again.";
-        }
-    }
-
-    if($level == 5){
-        if(checkAnswerFive($userAnswer, $random_letters_q5)){
-            // Move to the next level or display a success message
-            $_SESSION["level"] = $level + 1;
-        } else {
-            // Increment the mistake counter
-            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
-            // Display an error message for incorrect answers
-            $errorMessage = "Incorrect answer. Please try again.";
-        }
-    }
-
-    if($level == 6){
-        if(checkAnswerSix($userAnswer, $random_numbers_q6)){
-            // Move to the next level or display a success message
-            $_SESSION["level"] = $level + 1;
-        } else {
-            // Increment the mistake counter
-            $_SESSION["mistake_count"] = isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] + 1 : 1;
-            // Display an error message for incorrect answers
-            $errorMessage = "Incorrect answer. Please try again.";
-        }
-    }
-
     // Check if the mistake count is 6
     // this will automatically end the game and redirect the user to the game over page
     // in this if statement, you will have add the logic that will be responsible for storing the result in the DB
