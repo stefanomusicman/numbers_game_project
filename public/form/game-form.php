@@ -36,7 +36,7 @@ $questions = array(
     "Identify the smallest and the largest number in a set of 6 numbers: {$_SESSION['random_numbers_q6']}",
 );
 
-
+echo(createAnswerAscending($_SESSION["random_letters_q1"]));
 
 // Check if the user submitted a response
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -45,7 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     switch ($level) {
         case 1:
-            if(checkAnswer($userAnswer,$_SESSION["random_letters_q1"])){
+            $questionSolution = createAnswerAscending($_SESSION["random_letters_q1"]);
+            if(checkAnswer($userAnswer, $questionSolution)){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -56,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 2:
-            if(checkAnswer($userAnswer,$_SESSION["random_letters_q2"])){
+            if(checkAnswer($userAnswer,createAnswerDescending($_SESSION["random_letters_q2"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -67,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 3:
-            if(checkAnswer($userAnswer, $_SESSION["random_numbers_q3"])){
+            if(checkAnswer($userAnswer,createAnswerAscending($_SESSION["random_numbers_q3"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -78,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 4:
-            if(checkAnswer($userAnswer, $_SESSION["random_numbers_q4"])){
+            if(checkAnswer($userAnswer,createAnswerDescending($_SESSION["random_numbers_q4"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -141,7 +142,7 @@ if ($level <= count($questions)) {
 
                 <div class="container_2">
                     <div class="promo-container">
-                        <h2>Number of Mistakes: <?php echo isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] : 0; ?></h2>
+                        <h2>Number of Mistakes: <?php echo isset($_SESSION["mistake_count"]) ? $_SESSION["mistake_count"] : 0;  ?></h2>
                     </div>
                     <div class="promo-container">
                         <h2>Level <?php echo $level; ?></h2>

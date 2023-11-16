@@ -52,6 +52,21 @@ function checkAnswer($input, $randomizedString) {
     }
 }
 
+function createAnswerAscending($randomizedString){
+    $cleanString = str_replace(",","",$randomizedString);
+    $splitInput = str_split($cleanString);
+    natcasesort($splitInput);
+    $anwserQuestion = implode(",",$splitInput);
+    return $anwserQuestion;
+}
+
+function createAnswerDescending($randomizedString){
+    $cleanString = str_replace(",","",$randomizedString);
+    $splitInput = str_split($cleanString);
+    natcasersort($splitInput);
+    $anwserQuestion = implode(",",$splitInput);
+    return $anwserQuestion;
+}
 
 
 ?>
