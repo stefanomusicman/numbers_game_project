@@ -14,8 +14,8 @@
                 <h2>LaSalle Quiz Game</h2>
             </div>
             <form method="post" action="../../src/features/signin.php">
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Username" name = "user"/>
+                <input type="password" placeholder="Password" name = "password" />
                 <div class="button-container">
                     <input id="login_button" type="submit" name="send" value="Login" />
                 </div>
@@ -26,3 +26,4 @@
 </body>
 
 </html>
+ 
