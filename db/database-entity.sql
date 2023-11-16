@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS authenticator(
 
 CREATE TABLE IF NOT EXISTS score( 
     scoreTime DATETIME NOT NULL, 
-    result ENUM('réussite', 'échec', 'incomplet'),
+    result ENUM('success', 'failure', 'incomplete'),
     livesUsed INTEGER NOT NULL,
     registrationOrder INTEGER, 
     FOREIGN KEY (registrationOrder) REFERENCES player(registrationOrder)
@@ -39,7 +39,7 @@ SELECT s.scoreTime, p.id, p.fName, p.lName, s.result, s.livesUsed
 FROM player p, score s
 WHERE p.registrationOrder = s.registrationOrder;
 
--- 4.Insert dummy data to the Tables | Insérer des données de test dans les Tables 
+-- 4.Insert dummy data to the Tables 
 
 -- 4.1.Table player 
 INSERT INTO player(fName, lName, userName, registrationTime)
@@ -49,8 +49,9 @@ INSERT INTO player(fName, lName, userName, registrationTime)
 VALUES('Marie','Jourdain', 'asterix2023', now());
 
 INSERT INTO player(fName, lName, userName, registrationTime)
-VALUES('Jonathan','David', 'pokemon527', now()); 
- 
+--VALUES('Jonathan','David', 'pokemon527', now()); 
+VALUES('Jonathan','David', 'pokemon', now()); 
+  
 -- 4.2.Table authenticator
 -- $passCode=password_hash('hellomontreal', PASSWORD_DEFAULT);
 INSERT INTO authenticator(passCode, registrationOrder)
@@ -62,14 +63,15 @@ VALUES('$2y$10$Lpd3JsgFW9.x2ft6Qo9h..xmtm82lmSuv/vaQKs9xPJ4rhKlMJAF.', 2);
 
 -- $passCode=password_hash('hellocanada', PASSWORD_DEFAULT);
 INSERT INTO authenticator(passCode, registrationOrder)
-VALUES('$2y$10$FRAyAIK6.TYEEmbOHF4JfeiBCdWFHcqRTILM7nF/7CPjE3dNEWj3W', 3);
+--VALUES('$2y$10$FRAyAIK6.TYEEmbOHF4JfeiBCdWFHcqRTILM7nF/7CPjE3dNEWj3W', 3);
+VALUES('123', 3);
 
 -- 4.3.Table score
 INSERT INTO score(scoreTime, result , livesUsed, registrationOrder)
-VALUES(now(), 'réussite', 4, 1);
+VALUES(now(), 'success', 4, 1);
 
 INSERT INTO score(scoreTime, result , livesUsed, registrationOrder)
-VALUES(now(), 'échec', 6, 2);
+VALUES(now(), 'failure', 6, 2);
 
 INSERT INTO score(scoreTime, result , livesUsed, registrationOrder)
-VALUES(now(), 'incomplet', 5, 3);
+VALUES(now(), 'incomplete', 5, 3);
