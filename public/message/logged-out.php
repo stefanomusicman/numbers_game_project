@@ -3,25 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>You Won</title>
-    <link rel="stylesheet" href="../assets/css/game-won.css" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <title>Logged Out</title>
+    <link rel="stylesheet" href="../assets/css/logout-page.css" />
 </head>
 
 <body>
     <div class="main">
-        <?php include '../template/nav.php'; ?>
-
         <div class="container_2">
             <div class="promo-container">
-                <h2>You've Won!</h2>
+                <h2>You've been logged out.</h2>
             </div>
             <div class="main-container">
                 <div class="text-container">
-                    <p>Congratulations! You've completed all 6 levels!</p>
+                    <p>Thanks for playing! Hope to see you again soon!</p>
                 </div>
                 <div class="button-container">
-                    <a id="play_again_button" href="../form/game-form.php">Play Again</a>
+                    <a href="../form/signin-form.php">Return to Login Page</a>
                 </div>
             </div>
         </div>

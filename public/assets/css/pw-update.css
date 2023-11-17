@@ -32,6 +32,7 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
 }
 
 .promo-container {
@@ -49,6 +50,7 @@ body {
 
 .container_2 {
     width: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,10 +88,7 @@ input {
     width: 85%;
 }
 
-#login_button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+button {
     font-family: 'Montserrat', sans-serif;
     width: 40%;
     height: 4em;
@@ -97,12 +96,15 @@ input {
     border-radius: 5px;
     background-color: aquamarine;
     font-size: 15px;
-    text-decoration: none;
-    color: black;
 }
 
-#login_button:hover {
+button:hover {
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 a:visited {

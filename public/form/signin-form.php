@@ -17,8 +17,7 @@
                 <input type="text" placeholder="Username" name = "user"/>
                 <input type="password" placeholder="Password" name = "password" />
                 <div class="button-container">
-                    <input id="submitbutton1" type="submit" name="send" value="SEND IT" />
-                    <!-- <button >Login</button> I changed button for input to make it work, but the css is not working now-->
+                    <input id="login_button" type="submit" name="send" value="Login" />
                 </div>
                 <p>Don't have an account? <a href="signup-form.php">Create One!</a></p>
             </form>

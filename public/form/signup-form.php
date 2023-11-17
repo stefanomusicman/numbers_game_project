@@ -13,13 +13,14 @@
             <div class="promo-container">
                 <h2>LaSalle Quiz Game</h2>
             </div>
-            <form>
-                <input type="text" placeholder="First Name" />
-                <input type="text" placeholder="Last Name" />
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+            <form method="post" action="../../src/features/signin.php">
+                <input name="fName" type="text" placeholder="First Name" />
+                <input name="lName" type="text" placeholder="Last Name" />
+                <input name="userName" type="text" placeholder="Username" />
+                <input name="password" type="password" placeholder="Password" />
+                <input name="confirm-password" type="password" placeholder="confirm-password" />
                 <div class="button-container">
-                    <button>Create an Account</button>
+                    <input id="create_account_button" type="submit" name="send" value="Create an Account" />
                 </div>
                 <p>Already have an account? <a href="signin-form.php">Login</a></p>
             </form>
