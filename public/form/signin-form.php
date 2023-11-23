@@ -1,3 +1,6 @@
+<?php 
+    session_start(); 
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,12 +17,16 @@
                 <h2>LaSalle Quiz Game</h2>
             </div>
             <form method="post" action="../../src/features/signin.php">
-                <input type="text" placeholder="Username" name = "user"/>
-                <input type="password" placeholder="Password" name = "password" />
+                <input type="text" placeholder="Username" name = "user"
+                value="<?php echo isset($_SESSION['userName']) ? $_SESSION['userName'] : ''; ?>"/>
+                <input type="password" placeholder="Password" name = "password"
+                value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>" />
+                <p><?php echo isset($_SESSION['err_signin']) ? $_SESSION['err_signin'] : ''; ?></p>
                 <div class="button-container">
                     <input id="login_button" type="submit" name="send" value="Login" />
                 </div>
                 <p>Don't have an account? <a href="signup-form.php">Create One!</a></p>
+                
             </form>
         </div>
     </div>

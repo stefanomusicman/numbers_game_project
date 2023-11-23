@@ -36,18 +36,23 @@ if (isset($_POST['send'])) {
             echo "user and password correct";
             session_start();
             $_SESSION['userName']=$user;
+            $_SESSION['err_signin'] = "";
             header('Location: ../../public/form/game-form.php');
     
         }
         else{
             session_start();
             $_SESSION['err_signin'] = "user or password wrong";
+            $_SESSION['userName']=$user;
+            $_SESSION['password']=$password;
             header('Location: ../../public/form/signin-form.php');
         }   
     }
     else {
         session_start();
             $_SESSION['err_signin'] = "user or password wrong";
+            $_SESSION['userName']=$user;
+            $_SESSION['password']=$password;
             header('Location: ../../public/form/signin-form.php');
     }
 }
