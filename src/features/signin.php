@@ -31,36 +31,26 @@ if (isset($_POST['send'])) {
 
     $verifyUserName = $obj ->checkUserName();
     if($verifyUserName === true){
-        echo "user found";
-    }
-    else {
-        echo "user name doesnt have an account";
-    }
-
-    $verifyPassword = $obj ->checkPassword();
-    if($verifyPassword === true){
-        echo "password is correct";
-    }
-    else {
-        echo "password not correct";
-    }
+        $verifyPassword = $obj ->checkPassword();
+        if($verifyPassword === true){
+            echo "user and password correct";
+            session_start();
+            $_SESSION['userName']=$user;
+            header('Location: ../../public/form/game-form.php');
     
-
+        }
+        else{
+            session_start();
+            $_SESSION['err_signin'] = "user or password wrong";
+            header('Location: ../../public/form/signin-form.php');
+        }   
+    }
+    else {
+        session_start();
+            $_SESSION['err_signin'] = "user or password wrong";
+            header('Location: ../../public/form/signin-form.php');
+    }
 }
                     
             
 ?>
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Answer</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <body>
-        <div id="back">
-            <a href="index.php"><input type="submit" value="Try again!"></a>
-        </div>
-    </body>
-</html>
