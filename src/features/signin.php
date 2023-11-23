@@ -14,7 +14,7 @@ if (isset($_POST['send'])) {
 
 
     //DB info
-    $tableName = "player";
+    //$tableName = "player";
 
     //Load the content of the user-defined functions used to interact with MySQL
     include_once "../../db/Database.php";
@@ -22,17 +22,29 @@ if (isset($_POST['send'])) {
     include_once "../../db/Insert.php";
     include_once "../../db/Select.php";
   
-
     //Instanciate an object of the Create class used to create the database and table  
     //Create the database and tables
     $obj = new Create ();
 
     //Instanciate an object of Select Class to look for the user inside the database
-    $obj = new Select ($tableName, $user, $password);
-    $userLogged = $obj ->checkUser();
-    echo "the user logged is ". $userLogged->getUserName();
+    $obj = new Select ($user, $password);
 
+    $verifyUserName = $obj ->checkUserName();
+    if($verifyUserName === true){
+        echo "user found";
+    }
+    else {
+        echo "user name doesnt have an account";
+    }
 
+    $verifyPassword = $obj ->checkPassword();
+    if($verifyPassword === true){
+        echo "password is correct";
+    }
+    else {
+        echo "password not correct";
+    }
+    
 
 }
                     
