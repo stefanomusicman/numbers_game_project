@@ -36,7 +36,12 @@ $questions = array(
     "Identify the smallest and the largest number in a set of 6 numbers: {$_SESSION['random_numbers_q6']}",
 );
 
-echo(createAnswerAscending($_SESSION["random_letters_q1"]));
+//echo createAnswerAscending($_SESSION["random_letters_q1"]). "\t";
+//echo createAnswerDescending($_SESSION["random_letters_q2"]). "\t";
+//echo createAnswerAscendingNumbers($_SESSION["random_numbers_q3"]);
+//echo createAnswerDescending($_SESSION["random_numbers_q4"]). "\t";
+//echo createAnswerAscendingTwoInput($_SESSION["random_letters_q5"]). "\t";
+//echo createAnswerAscendingTwoNumber($_SESSION["random_numbers_q6"]);
 
 // Check if the user submitted a response
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -68,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 3:
-            if(checkAnswer($userAnswer,createAnswerAscending($_SESSION["random_numbers_q3"]))){
+            if(checkAnswer($userAnswer,createAnswerAscendingNumbers($_SESSION["random_numbers_q3"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -79,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 4:
-            if(checkAnswer($userAnswer,createAnswerDescending($_SESSION["random_numbers_q4"]))){
+            if(checkAnswer($userAnswer,createAnswerDescendingNumbers($_SESSION["random_numbers_q4"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -90,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 5:
-            if(checkAnswer($userAnswer, $_SESSION["random_letters_q5"])){
+            if(checkAnswer($userAnswer, createAnswerAscendingTwoInput($_SESSION["random_letters_q5"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {
@@ -101,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 6:
-            if(checkAnswer($userAnswer, $_SESSION["random_numbers_q6"])){
+            if(checkAnswer($userAnswer, createAnswerAscendingTwoNumber($_SESSION["random_numbers_q6"]))){
                 // Move to the next level or display a success message
                 $_SESSION["level"] = $level + 1;
             } else {

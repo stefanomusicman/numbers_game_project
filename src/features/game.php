@@ -59,12 +59,41 @@ function createAnswerAscending($randomizedString){
     $anwserQuestion = implode(",",$splitInput);
     return $anwserQuestion;
 }
+function createAnswerAscendingNumbers($randomizedString){
+    $splitInput = explode(",",$randomizedString);
+    sort($splitInput);
+    $anwserQuestion = implode(",",$splitInput);
+    return $anwserQuestion;
+}
 
 function createAnswerDescending($randomizedString){
     $cleanString = str_replace(",","",$randomizedString);
     $splitInput = str_split($cleanString);
-    natcasersort($splitInput);
-    $anwserQuestion = implode(",",$splitInput);
+    natcasesort($splitInput);
+    $reversedArray = array_reverse($splitInput);
+    $anwserQuestion = implode(",",$reversedArray);
+    return $anwserQuestion;
+}
+function createAnswerDescendingNumbers($randomizedString){
+    $splitInput = explode(",",$randomizedString);
+    rsort($splitInput);
+    $reversedArray = array_reverse($splitInput);
+    $anwserQuestion = implode(",",$reversedArray);
+    return $anwserQuestion;
+}
+function createAnswerAscendingTwoInput($randomizedString){
+    $cleanString = str_replace(",","",$randomizedString);
+    $splitInput = str_split($cleanString);
+    natcasesort($splitInput);
+    $answerArray = array($splitInput[0],$splitInput[5]);
+    $anwserQuestion = implode(",", $answerArray);
+    return $anwserQuestion;
+}
+function createAnswerAscendingTwoNumber($randomizedString){
+    $splitInput = explode(",",$randomizedString);
+    sort($splitInput);
+    $answerArray = array($splitInput[0],$splitInput[5]);
+    $anwserQuestion = implode(",", $answerArray);
     return $anwserQuestion;
 }
 
