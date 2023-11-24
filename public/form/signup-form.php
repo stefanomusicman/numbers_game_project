@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +19,7 @@
                 <input name="lName" type="text" placeholder="Last Name" />
                 <input name="userName" type="text" placeholder="Username" />
                 <input name="password" type="password" placeholder="Password" />
-                <input name="confirm-password" type="password" placeholder="confirm-password" />
+                <input name="confirm-password" type="password" placeholder="Confirm-Password" />
                 <div class="button-container">
                     <input id="create_account_button" type="submit" name="send" value="Create an Account" />
                 </div>

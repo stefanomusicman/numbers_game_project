@@ -76,6 +76,7 @@ input {
     padding-left: 10px;
     border: none;
     box-shadow: 0px 0px 2px 1px lightgrey;
+    margin-bottom: 10px; /* Espacio entre inputs */
 }
 
 .button-container {
@@ -84,9 +85,11 @@ input {
     justify-content: space-evenly;
     align-items: center;
     width: 85%;
+    margin-right: 5%;
 }
 
-#login_button {
+#login_button,
+#update_button { /* Agregué estilos para los botones */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,9 +102,11 @@ input {
     font-size: 15px;
     text-decoration: none;
     color: black;
+    margin-top: 10px; /* Espacio entre los botones */
 }
 
-#login_button:hover {
+#login_button:hover,
+#update_button:hover {
     cursor: pointer;
 }
 
