@@ -13,7 +13,7 @@
             <div class="promo-container">
                 <h2>LaSalle Quiz Game</h2>
             </div>
-            <form method="post" action="../../src/features/signin.php">
+            <form method="post" action="../../src/features/signup.php">
                 <input name="fName" type="text" placeholder="First Name" />
                 <input name="lName" type="text" placeholder="Last Name" />
                 <input name="userName" type="text" placeholder="Username" />
