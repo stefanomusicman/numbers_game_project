@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if there is an error message in the session
+$account_success = isset($_SESSION['account_success']) ? $_SESSION['account_success'] : '';
+
+// Clear the error message from the session
+unset($_SESSION['account_success']);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +24,9 @@
                 <h2>LaSalle Quiz Game</h2>
             </div>
             <form method="post" action="../../src/features/signin.php">
+                <?php if (!empty($account_success)): ?>
+                <p class="error-message"><?php echo $account_success; ?></p>
+                <?php endif; ?>
                 <input type="text" placeholder="Username" name = "user"/>
                 <input type="password" placeholder="Password" name = "password" />
                 <div class="button-container">

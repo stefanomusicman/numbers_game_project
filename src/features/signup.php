@@ -3,7 +3,23 @@
 include_once '../../db/Database.php';
 require_once '../../config.php';
 
-function create_player($fname, $lName, $userName, $password) {
+session_start();
+
+function isFirstLetterAlphabetical($str) {
+    // Check if the string is not empty
+    if (!empty($str)) {
+        // Get the first character of the string
+        $firstLetter = $str[0];
+        
+        // Check if the first character is an alphabetical letter
+        return ctype_alpha($firstLetter);
+    }
+
+    // Return false if the string is empty
+    return false;
+}
+
+function create_player($fName, $lName, $userName, $password) {
     $mysqli = new mysqli('localhost', 'root', '', 'kidsGames');
     $currentDateTime = date("Y-m-d H:i:s");
 
@@ -32,12 +48,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm-password'];
 
-    // Add validation and error handling as needed
+    $valid_firstName = (strlen($fName) != 0 && isFirstLetterAlphabetical($fName));
+    $valid_lastName = (strlen($lName) != 0 && isFirstLetterAlphabetical($lName));
+    $valid_userName = (strlen($userName) >= 8);
+    $valid_password = (strlen($userName) >= 8);
+    $valid_password2 = (strlen($userName) >= 8);
+    $are_passwords_equal = ($valid_password === $valid_password2);
 
-    // Call the create_player function
-    create_player($fName, $lName, $userName, $password);
+    if($valid_firstName && $valid_lastName && $valid_userName && $valid_password && $valid_password2 && $are_passwords_equal) {
+        $account_success = "Account has been created successfully! You may now login";
+        $_SESSION['account_success'] = $account_success;
 
-    // Redirect or display a success message as needed
-    header("Location: ../../public/form/game-form.php"); // Replace with the appropriate success page
-    exit();
+        create_player($fName, $lName, $userName, $password);
+        header("Location: ../../public/form/signin-form.php");
+        exit();
+    } else {
+        // Validation failed
+        $error_message = "There was an error in the form submission. Please check your inputs.";
+
+        // Store the error message in a session variable
+        $_SESSION['error_message'] = $error_message;
+
+        // Redirect back to the signup form
+        header("Location: ../../public/form/signup-form.php");
+        exit();
+    }
 }
