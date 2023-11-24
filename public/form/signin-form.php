@@ -1,5 +1,8 @@
 <?php 
     session_start(); 
+
+    $error_message = isset($_SESSION['err_signin']) ? $_SESSION['err_signin'] : '';
+    unset($_SESSION['err_signin']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +24,9 @@
                 value="<?php echo isset($_SESSION['userName']) ? $_SESSION['userName'] : ''; ?>"/>
                 <input type="password" placeholder="Password" name = "password"
                 value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>" />
-                <p><?php echo isset($_SESSION['err_signin']) ? $_SESSION['err_signin'] : ''; ?></p>
+                <?php if (!empty($error_message)): ?>
+                <p><?php echo $error_message; ?></p>
+                <?php endif; ?>
                 <div class="button-container">
                     <input id="login_button" type="submit" name="send" value="Login" />
                 </div>

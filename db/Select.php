@@ -90,6 +90,23 @@ class Select extends Database {
         }
     }
 
+    public function getHashedPassword() {
+        // Assuming $this->userName is the username you want to retrieve the password for
+        $sql = "SELECT passCode FROM authenticator
+                JOIN player ON authenticator.registrationOrder = player.registrationOrder
+                WHERE player.userName = '{$this->user}'";
+
+        $result = $this->executeQuery($sql);
+
+        // var_dump($result);
+
+        if ($result && isset($result['row1']['passCode'])) {
+            return $result['row1']['passCode'];
+        }
+
+        return null; // Return null if an error occurs or no result is found
+    }
+
     public function __destruct(){
         //6-CLOSE THE CONNECTION TO MYSQL
         $this->closeMySQL();
