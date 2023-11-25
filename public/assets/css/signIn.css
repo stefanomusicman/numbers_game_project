@@ -76,16 +76,14 @@ input {
     padding-left: 10px;
     border: none;
     box-shadow: 0px 0px 2px 1px lightgrey;
-    margin-bottom: 10px; /* Espacio entre inputs */
+ 
 }
 
 .button-container {
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     width: 85%;
-    margin-right: 5%;
 }
 
 #login_button,
@@ -102,7 +100,6 @@ input {
     font-size: 15px;
     text-decoration: none;
     color: black;
-    margin-top: 10px; /* Espacio entre los botones */
 }
 
 #login_button:hover,

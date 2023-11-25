@@ -20,7 +20,7 @@
                 <input name="nPassword" type="password" placeholder="New Password" />
                 <input name="cPassword" type="password" placeholder="Confirm Password" />
                 <div class="button-container">
-                    <button type="submit">Update</button>
+                    <button id="update-button" type="submit">Update</button>
                     <a href="signin-form.php" class="back-button">Return to Login</a>
                     
                 </div>
