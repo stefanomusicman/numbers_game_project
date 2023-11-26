@@ -32,10 +32,10 @@
                 <?php endif; ?>
                 <input type="text" placeholder="Username" name = "user"
                 value="<?php echo isset($_SESSION['userName']) ? $_SESSION['userName'] : ''; ?>"/>
-                <input type="password" placeholder="Password" name = "password"
-                value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>" />
+                <input type="password" placeholder="Password" name = "password"/>
                 <?php if (!empty($error_message)): ?>
                 <p><?php echo $error_message; ?></p>
+                <p>Forgot your password? <a href="../../public/form/pw-update-form.php">Change it</a><p>
                 <?php endif; ?>
                 <div class="button-container">
                     <input id="login_button" type="submit" name="send" value="Login" />
