@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate passwords match
     if ($newPassword !== $confirmPassword) {
-        echo "Passwords do not match.";
+        header("Location: ../../public/form/pw-update-form.php");
         exit();
     }
 
