@@ -39,7 +39,9 @@
                 <?php endif; ?>
                 <div class="button-container">
                     <input id="login_button" type="submit" name="send" value="Login" />
+                    <a href="pw-update-form.php" id="update_button">Forgot your Password?</a>
                 </div>
+                
                 <p>Don't have an account? <a href="signup-form.php">Create One!</a></p>
                 
             </form>
@@ -48,4 +50,3 @@
 </body>
 
 </html>
- 
