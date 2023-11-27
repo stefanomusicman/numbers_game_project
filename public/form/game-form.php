@@ -5,8 +5,22 @@ require '../../src/features/game.php';
 include_once "../../db/Database.php";
 include_once "../../db/Create.php";
 include_once "../../db/Select.php";
+include_once "../../db/Insert.php";
 
-$currentDateTime = date("Y-m-d H:i:s");
+function add_result($status, $livesUsed, $registrationOrder) {
+    $mysqli = new mysqli('localhost', 'root', '', 'kidsGames');
+    $currentDateTime = date("Y-m-d H:i:s");
+
+    if($mysqli -> connect_errno) {
+        echo "Failed to connect to MYSQL: " . $mysqli->connecto_error;
+        exit();
+    }
+
+    $sqlInsertResult = "INSERT INTO score (scoreTime, result, livesUsed, registrationOrder) VALUES
+    ('$currentDateTime', '$status', '$livesUsed', '$registrationOrder')";
+    $mysqli->query($sqlInsertResult);
+    $mysqli->close();
+}
 
 if (!isset($_SESSION["random_strings_generated"])) {
 
@@ -127,16 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // this will automatically end the game and redirect the user to the game over page
     // in this if statement, you will have add the logic that will be responsible for storing the result in the DB
     if (isset($_SESSION["mistake_count"]) && $_SESSION["mistake_count"] == 6) {
-        //store the data for fail on the database
 
-
-        // Instanciate an object of the Create class used to create the database and table
-        // Create the database and tables
-        $obj = new Create();
-        // $obj = new Select($user, $password);
-
-        // Instanciate an object of Select Class to look for the user inside the database
-        $obj = new Insert($_SESSION['registrationOrder'], $_SESSION["mistake_count"],$currentDateTime, 'failure');
+        add_result("failure", $_SESSION["mistake_count"], $_SESSION['registrationOrder']);
 
         session_unset();
         session_destroy();
@@ -189,7 +195,7 @@ if ($level <= count($questions)) {
                 var resetTimer = function() {
                     clearTimeout(inactivityTimer);
                     inactivityTimer = setTimeout(function() {
-                        window.location.href = '../../src/features/signout.php';
+                        window.location.href = '../../src/features/timeout.php';
                     }, inactivityTimeout);
                 };
 
@@ -206,6 +212,7 @@ if ($level <= count($questions)) {
 } else {
     // If a user is able to successfully complete the game in under 6 attempts, 
     // the session will be terminated and they will be re-directed to a game-won screen
+    add_result("success", $_SESSION["mistake_count"], $_SESSION['registrationOrder']);
     session_unset();
     session_destroy();
     header("Location: ../message/game-won.php");

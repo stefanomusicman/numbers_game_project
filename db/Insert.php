@@ -10,8 +10,6 @@ class Insert extends Database {
     private $status;
     //Constructor method 
     public function __construct($registrationOrder, $livesUsed, $dateTime, $status){
-        $this->dbName = $db;
-        $this->tableName = $table;
         $this->registrationOrder = $registrationOrder;
         $this->livesUsed = $livesUsed;
         $this->dateTime = $dateTime;
