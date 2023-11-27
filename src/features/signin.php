@@ -32,10 +32,14 @@ if (isset($_POST['send'])) {
         // Verify the entered password with the hashed password from the database
         if (password_verify($password, $hashedPasswordFromDB)) {
             echo "user and password correct";
+            $registrationOrder = $obj->getRegistrationOrder();
             session_start();
             $_SESSION['userName'] = $user;
             $_SESSION['err_signin'] = "";
+            $_SESSION['registrationOrder'] = $registrationOrder;
+            
             header('Location: ../../public/form/game-form.php');
+            exit();
         } else {
             session_start();
             $_SESSION['err_signin'] = "Username or password is incorrect";

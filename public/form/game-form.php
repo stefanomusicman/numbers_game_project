@@ -1,6 +1,12 @@
 <?php
 session_start();
+
 require '../../src/features/game.php';
+include_once "../../db/Database.php";
+include_once "../../db/Create.php";
+include_once "../../db/Select.php";
+
+$currentDateTime = date("Y-m-d H:i:s");
 
 if (!isset($_SESSION["random_strings_generated"])) {
 
@@ -121,6 +127,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // this will automatically end the game and redirect the user to the game over page
     // in this if statement, you will have add the logic that will be responsible for storing the result in the DB
     if (isset($_SESSION["mistake_count"]) && $_SESSION["mistake_count"] == 6) {
+        //store the data for fail on the database
+
+
+        // Instanciate an object of the Create class used to create the database and table
+        // Create the database and tables
+        $obj = new Create();
+        // $obj = new Select($user, $password);
+
+        // Instanciate an object of Select Class to look for the user inside the database
+        $obj = new Insert($_SESSION['registrationOrder'], $_SESSION["mistake_count"],$currentDateTime, 'failure');
+
         session_unset();
         session_destroy();
         header("Location: ../message/game-over.php");
