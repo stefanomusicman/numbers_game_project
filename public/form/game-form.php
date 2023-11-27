@@ -140,6 +140,7 @@ if ($level <= count($questions)) {
             <title>Game Level <?php echo $level; ?></title>
             <link rel="stylesheet" href="../assets/css/game-form.css" />
             <link rel="stylesheet" href="../assets/css/style.css" />
+            <!-- <script src="../../public/assets/js/timeout.js" defer></script> -->
         </head>
         <body>
             <div class="main">
@@ -164,8 +165,25 @@ if ($level <= count($questions)) {
                     </form>
                 </div>
             </div>
+            <script>
+                //Timeout
+                var inactivityTimeout = 15 * 60 * 1000; // 15 minutes in milliseconds
+                var inactivityTimer;
+                var resetTimer = function() {
+                    clearTimeout(inactivityTimer);
+                    inactivityTimer = setTimeout(function() {
+                        window.location.href = '../../src/features/signout.php';
+                    }, inactivityTimeout);
+                };
 
+                document.addEventListener('mousemove', resetTimer);
+                document.addEventListener('keypress', resetTimer);
+
+                // Initial setup
+                resetTimer();
+            </script>
         </body>
+
     </html>
     <?php
 } else {
