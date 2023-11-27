@@ -1,5 +1,32 @@
+/* Font import */
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round&family=Montserrat:wght@300&family=Work+Sans&display=swap');
 
+/* Styles for the Back button */
+.back-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    width: 40%;
+    height: 4em;
+    border: none;
+    border-radius: 5px;
+    background-color: aquamarine;
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 85%;
+}
+
+
+
+/* General styles */
 * {
     margin: 0;
     padding: 0;
@@ -23,6 +50,7 @@ body {
     background-image: url('../images/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    /* Font families */
     font-family: 'Crete Round', serif;
     font-family: 'Montserrat', sans-serif;
     font-family: 'Work Sans', sans-serif;
@@ -78,17 +106,14 @@ input {
     padding-left: 10px;
     border: none;
     box-shadow: 0px 0px 2px 1px lightgrey;
+    margin-bottom: 10px;
 }
 
-.button-container {
+
+#update-button { /* Agregué estilos para los botones */
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    width: 85%;
-}
-
-button {
     font-family: 'Montserrat', sans-serif;
     width: 40%;
     height: 4em;
@@ -96,7 +121,19 @@ button {
     border-radius: 5px;
     background-color: aquamarine;
     font-size: 15px;
+    text-decoration: none;
+    color: black;
 }
+
+#update-button:hover {
+    cursor: pointer;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
 
 button:hover {
     cursor: pointer;

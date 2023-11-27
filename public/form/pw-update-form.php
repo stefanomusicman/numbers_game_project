@@ -10,18 +10,19 @@
 
 <body>
     <div class="main">
-
-        <?php include '../template/nav.php'; ?>
         
         <div class="container_2">
             <div class="promo-container">
                 <h2>Update Password</h2>
             </div>
-            <form>
-                <input name="old-password" type="text" placeholder="Old Password" />
-                <input name="new-password" type="text" placeholder="New Password" />
+            <form method="post" action="../../src/features/pw-update.php">
+                <input name="userName" type="text" placeholder="Username" />
+                <input name="nPassword" type="password" placeholder="New Password" />
+                <input name="cPassword" type="password" placeholder="Confirm Password" />
                 <div class="button-container">
-                    <button>Update</button>
+                    <button id="update-button" type="submit">Update</button>
+                    <a href="signin-form.php" class="back-button">Return to Login</a>
+                    
                 </div>
             </form>
         </div>
