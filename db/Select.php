@@ -1,6 +1,7 @@
 <?php
 
 require_once "../../public/model/user.php";
+
 class Select extends Database {
 
     private $user;
@@ -13,6 +14,23 @@ class Select extends Database {
         $this->user = $user;
         $this->password = $password;
         
+    }
+
+    public function getViewHistory()
+    {
+        
+        // Connect to MySQL
+        $this->connectToMySQL(HOST, USER, PASS);
+        // Select the database
+        $this->selectDatabase(DBASE);
+
+        // SQL query to retrieve game history
+        $sql = "SELECT * FROM history";
+
+        // Execute the query
+        $gameHistory = $this->executeQuery($sql);
+
+        return $gameHistory;
     }
 
     public function setRegistrationOrder() {
