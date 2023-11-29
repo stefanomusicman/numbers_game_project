@@ -16,6 +16,10 @@ class Select extends Database {
         
     }
 
+    public function getRegistrationOrder() {
+        return $this->registrationOrder;
+    }
+
     public function getViewHistory()
     {
         

@@ -15,7 +15,7 @@ function generateRandomNumbers() {
     }
 
     // Convert the array to a comma-separated string
-    $result = implode(', ', $numbers);
+    $result = implode(',', $numbers);
 
     return $result;
 }
@@ -32,7 +32,7 @@ function generateRandomLetters() {
         $randomLetter = $letters[rand(0, strlen($letters) - 1)];
 
         // Check if the letter is not already in the result string
-        if (strpos($result, $randomLetter) === false) {
+        if (strpos(strtolower($result),strtolower($randomLetter)) === false) {
             $result .= $randomLetter . ',';
         }
     }
@@ -43,28 +43,59 @@ function generateRandomLetters() {
     return $result;
 }
 
-function checkAnswerOne($input, $randomizedString) {
-    return false;
+function checkAnswer($input, $randomizedString) {
+    if (strcmp($input,$randomizedString)!==0) {
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
-function checkAnswerTwo($input, $randomizedString) {
-    return true;
+function createAnswerAscending($randomizedString){
+    $cleanString = str_replace(",","",$randomizedString);
+    $splitInput = str_split($cleanString);
+    natcasesort($splitInput);
+    $anwserQuestion = implode(",",$splitInput);
+    return $anwserQuestion;
+}
+function createAnswerAscendingNumbers($randomizedString){
+    $splitInput = explode(",",$randomizedString);
+    sort($splitInput);
+    $anwserQuestion = implode(",",$splitInput);
+    return $anwserQuestion;
 }
 
-function checkAnswerThree($input, $randomizedString) {
-    return true;
+function createAnswerDescending($randomizedString){
+    $cleanString = str_replace(",","",$randomizedString);
+    $splitInput = str_split($cleanString);
+    natcasesort($splitInput);
+    $reversedArray = array_reverse($splitInput);
+    $anwserQuestion = implode(",",$reversedArray);
+    return $anwserQuestion;
+}
+function createAnswerDescendingNumbers($randomizedString){
+    $splitInput = explode(",",$randomizedString);
+    rsort($splitInput);
+    $reversedArray = array_reverse($splitInput);
+    $anwserQuestion = implode(",",$reversedArray);
+    return $anwserQuestion;
+}
+function createAnswerAscendingTwoInput($randomizedString){
+    $cleanString = str_replace(",","",$randomizedString);
+    $splitInput = str_split($cleanString);
+    natcasesort($splitInput);
+    $answerArray = array($splitInput[0],$splitInput[5]);
+    $anwserQuestion = implode(",", $answerArray);
+    return $anwserQuestion;
+}
+function createAnswerAscendingTwoNumber($randomizedString){
+    $splitInput = explode(",",$randomizedString);
+    sort($splitInput);
+    $answerArray = array($splitInput[0],$splitInput[5]);
+    $anwserQuestion = implode(",", $answerArray);
+    return $anwserQuestion;
 }
 
-function checkAnswerFour($input, $randomizedString) {
-    return true;
-}
-
-function checkAnswerFive($input, $randomizedString) {
-    return true;
-}
-
-function checkAnswerSix($input, $randomizedString) {
-    return true;
-}
 
 ?>
