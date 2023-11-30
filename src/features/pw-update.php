@@ -22,6 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['err_pwupdate'] = "Passwords must match.";
         header("Location: ../../public/form/pw-update-form.php");
         exit();
+    } else if(strlen($newPassword) < 8){
+        $_SESSION['err_pwupdate'] = "Passwords must be at least 8 characters.";
+        header("Location: ../../public/form/pw-update-form.php");
+        exit();
     } else {
         // Hash the new password
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
