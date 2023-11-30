@@ -19,6 +19,28 @@ function isFirstLetterAlphabetical($str) {
     return false;
 }
 
+function does_user_exist($userName) {
+    $mysqli = new mysqli('localhost', 'root', '', 'kidsGames');
+    $currentDateTime = date("Y-m-d H:i:s");
+
+    if($mysqli -> connect_errno) {
+        echo "Failed to connect to MYSQL: " . $mysqli->connecto_error;
+        exit();
+    }
+    
+    // Check if the username already exists
+    $checkUsernameQuery = "SELECT * FROM player WHERE userName = '$userName'";
+    $result = $mysqli->query($checkUsernameQuery);
+
+    if ($result->num_rows > 0) {
+        $mysqli->close();
+        return true;
+    } else {
+        $mysqli->close();
+        return false;
+    }
+}
+
 function create_player($fName, $lName, $userName, $password) {
     $mysqli = new mysqli('localhost', 'root', '', 'kidsGames');
     $currentDateTime = date("Y-m-d H:i:s");
@@ -55,7 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $valid_password2 = (strlen($userName) >= 8);
     $are_passwords_equal = ($valid_password === $valid_password2);
 
-    if($valid_firstName && $valid_lastName && $valid_userName && $valid_password && $valid_password2 && $are_passwords_equal) {
+    if(does_user_exist($userName) == true) {
+        $error_message = "There is already a user with this username.";
+        $_SESSION['error_message'] = $error_message;
+
+        // Redirect back to the signup form
+        header("Location: ../../public/form/signup-form.php");
+        exit();
+    } else if($valid_firstName && $valid_lastName && $valid_userName && $valid_password && $valid_password2 && $are_passwords_equal) {
         $account_success = "Account has been created successfully! You may now login";
         $_SESSION['account_success'] = $account_success;
 
