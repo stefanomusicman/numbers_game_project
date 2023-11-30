@@ -76,7 +76,7 @@ function createAnswerDescending($randomizedString){
 }
 function createAnswerDescendingNumbers($randomizedString){
     $splitInput = explode(",",$randomizedString);
-    rsort($splitInput);
+    sort($splitInput);
     $reversedArray = array_reverse($splitInput);
     $anwserQuestion = implode(",",$reversedArray);
     return $anwserQuestion;
@@ -84,7 +84,7 @@ function createAnswerDescendingNumbers($randomizedString){
 function createAnswerAscendingTwoInput($randomizedString){
     $cleanString = str_replace(",","",$randomizedString);
     $splitInput = str_split($cleanString);
-    natcasesort($splitInput);
+    sort($splitInput);
     $answerArray = array($splitInput[0],$splitInput[5]);
     $anwserQuestion = implode(",", $answerArray);
     return $anwserQuestion;
