@@ -73,9 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $valid_firstName = (strlen($fName) != 0 && isFirstLetterAlphabetical($fName));
     $valid_lastName = (strlen($lName) != 0 && isFirstLetterAlphabetical($lName));
     $valid_userName = (strlen($userName) >= 8);
-    $valid_password = (strlen($userName) >= 8);
-    $valid_password2 = (strlen($userName) >= 8);
-    $are_passwords_equal = ($valid_password === $valid_password2);
+    $valid_password = (strlen($password) >= 8);
+    $valid_password2 = (strlen($confirmPassword) >= 8);
+    $are_passwords_equal = ($password === $confirmPassword);
 
     if(does_user_exist($userName) == true) {
         $error_message = "There is already a user with this username.";
