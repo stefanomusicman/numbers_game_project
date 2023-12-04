@@ -23,7 +23,7 @@ function generateRandomNumbers() {
 // Function that will generate a string of 6 random letters
 function generateRandomLetters() {
     // Combine both lowercase and uppercase letters
-    $letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $letters = 'abcdefghijklmnopqrstuvwxyz';
 
     $result = '';
 
@@ -55,7 +55,7 @@ function checkAnswer($input, $randomizedString) {
 function createAnswerAscending($randomizedString){
     $cleanString = str_replace(",","",$randomizedString);
     $splitInput = str_split($cleanString);
-    natcasesort($splitInput);
+    sort($splitInput);
     $anwserQuestion = implode(",",$splitInput);
     return $anwserQuestion;
 }
@@ -69,7 +69,7 @@ function createAnswerAscendingNumbers($randomizedString){
 function createAnswerDescending($randomizedString){
     $cleanString = str_replace(",","",$randomizedString);
     $splitInput = str_split($cleanString);
-    natcasesort($splitInput);
+    sort($splitInput);
     $reversedArray = array_reverse($splitInput);
     $anwserQuestion = implode(",",$reversedArray);
     return $anwserQuestion;
